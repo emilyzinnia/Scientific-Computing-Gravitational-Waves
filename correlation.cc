@@ -14,13 +14,13 @@ float correlation( rvector<float> F, rvector<float> G ){
  
   // make const float rarrays needed for sdot
 
-  rvector<const float> F_const = F; 
-  rvector<const float> G_const = G;
+  const float* F_const = (const float*)F.data(); 
+  const float* G_const = (const float*)G.data();
 
   float FdotF, FdotG, GdotG, corr;
-  FdotF = cblas_sdot(n, F_const.data(), incF, F_const.data(), incF);
-  FdotG = cblas_sdot(n, F_const.data(), incF, G_const.data(), incG);
-  GdotG = cblas_sdot(n, G_const.data(), incG, G_const.data(), incG);
+  FdotF = cblas_sdot(n, F_const, incF, F_const, incF);
+  FdotG = cblas_sdot(n, F_const, incF, G_const, incG);
+  GdotG = cblas_sdot(n, G_const, incG, G_const, incG);
 
   corr = FdotG / sqrt( FdotF * GdotG );
 
