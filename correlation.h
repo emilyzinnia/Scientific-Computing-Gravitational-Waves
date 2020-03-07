@@ -9,6 +9,6 @@
 
 #include <rarray>
 
-double correlation( rarray<double> F, rarray<double> G );
+float correlation( rvector<const float> F, rvector<const float> G );
 
 #endif

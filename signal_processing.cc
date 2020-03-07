@@ -18,13 +18,14 @@ void fft_signal(rvector<complex>& f, rvector<complex>& fhat){
   fftw_destroy_plan(p);
 }
 // Function that computes the power given the Fourier components of the signal                  
-rvector<double> compute_power(rvector<complex> fhat){
+rvector<float> compute_power(rvector<complex> fhat){
 
-  int length = fhat.aspect(0);
-  rvector<double> pow( length );
+  int length = fhat.extent(0);
+  rvector<float> pow( length );
   
   for (int i = 0; i<length; i++){
-    pow[i] = (double)std::norm( fhat[i] ) * (double)std::norm( fhat[i] ) ;
+    float norm = std::norm( fhat[i] );
+    pow[i] = norm * norm;
   }
 
   return pow;
