@@ -43,7 +43,8 @@ int main(){
   for (int i=0; i<n; i++){
 
     // construct filename
-    string detection_num = i<10? "0":""  + to_string(i+1); 
+    string num_prefix = i+1<10? "0": "";
+    string detection_num = num_prefix  + to_string(i+1); 
     string filename = path + file_prefix + detection_num + ".nc";
 
     // Read detection data
