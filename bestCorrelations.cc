@@ -6,14 +6,16 @@
 
 #include <rarray>
 #include <iostream>
-
+#include <rarrayio>
+#include <complex>
 #include "read_nc.h"
 #include "signal_processing.h"
 #include "correlation.h"
 
-using namespace std;
+using namespace std; 
 
-typedef complex<double> complex;
+typedef std::complex<double> complex;
+
 
 int main(){
 
@@ -21,49 +23,49 @@ int main(){
   int n = 32;
 
   // create array to store correlations
-  rvector<double> correlations(n); 
+  rvector<float> correlations(n); 
 
   // define path
   string path = "data_files/";
   string file_prefix = "detection";
   
   // Read GW prediction
-  rvector<complex> GW_pred = read_GW_data( path+"GWprediction.nc");
+  rvector<std::complex<double>> GW_pred = read_GW_data( path+"GWprediction.nc");
 
   // Fourier transform GW prediction
-  rvector<complex> GW_FFT( GW_pred.extent(0) );
+  rvector<std::complex<double>> GW_FFT( GW_pred.extent(0) );
   fft_signal( GW_pred, GW_FFT );
 
   // Compute power spectrum of GW prediction
-  rvector<double> power_GW = compute_power( GW_FFT ); 
+  rvector<float> power_GW = compute_power( GW_FFT ); 
 
   // loop over detection files and compute correlations
   for (int i=0; i<n; i++){
 
     // construct filename
-    string detection_num = to_string(i+1); 
+    string detection_num = i<10? "0":""  + to_string(i+1); 
     string filename = path + file_prefix + detection_num + ".nc";
 
     // Read detection data
-    rvector<complex> detection_data = read_GW_data( filename ); 
+    rvector<std::complex<double>> detection_data = read_GW_data( filename ); 
 
     // Fourier transform detection data
-    rvector<complex> data_FFT(detection_data.extent(0));
+    rvector<std::complex<double>> data_FFT(detection_data.extent(0));
     fft_signal( detection_data, data_FFT );
 
     // Compute power spectrum of data
-    rvector<double> pow_data = compute_power( data_FFT ); 
+    rvector<float> power_data = compute_power( data_FFT ); 
 
     // Compute correlation functions and store them in array 
     correlations[i] = correlation( power_GW, power_data ); 
 
-    detection_data.clear(); // release data from memory
-    pow_data.clear();
+    //detection_data.clear(); // release data from memory
+    //power_data.clear();
     
   }
-
-  // Sort correlations
-  sort(correlations);
   
+  cout << correlations << endl;
+  // Sort correlations
+  //sort(correlations);  
 
 }
