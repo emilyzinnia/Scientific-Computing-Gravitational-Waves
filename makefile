@@ -31,8 +31,8 @@ LDLIBS = -L${NETCDF_LIB} -I${BLAS_INC} -L${BLAS_LIB}
 # GW correlations
 
 gw: correlation.o signal_processing.o read_nc.o 
-	$(CXX) $(CXXFLAGS) -o gw \
-	correlation.o signal_processing.o readnc.o $(LDFLAGS) $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o gw bestCorrelations.cc \
+	correlation.o signal_processing.o read_nc.o $(LDLIBS) $(LDFLAGS) 
 
 correlation.o: 
 	$(CXX) -I$(BLAS_INC) $(CXXFLAGS) -c -o correlation.o correlation.cc 
