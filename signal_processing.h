@@ -15,6 +15,6 @@ typedef std::complex<double> complex;
 void fft_signal(rvector<complex>& f, rvector<complex>& fhat);
 
 // Function that computes the power given the Fourier components of the signal 
-rvector<float> compute_power(rvector<complex> fhat);
+rvector<double> compute_power(rvector<complex> fhat);
 
 #endif

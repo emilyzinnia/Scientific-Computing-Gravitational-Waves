@@ -9,6 +9,8 @@
 
 #include <rarray>
 
-float correlation( rvector<const float> F, rvector<const float> G );
+double correlation( rvector<double> F, rvector<double> G );
+
+void get_top_five( rvector<double> corr );
 
 #endif

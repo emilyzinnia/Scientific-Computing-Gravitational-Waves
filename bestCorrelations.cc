@@ -23,7 +23,7 @@ int main(){
   int n = 32;
 
   // create array to store correlations
-  rvector<float> correlations(n); 
+  rvector<double> correlations(n); 
 
   // define path
   string path = "data_files/";
@@ -37,7 +37,7 @@ int main(){
   fft_signal( GW_pred, GW_FFT );
 
   // Compute power spectrum of GW prediction
-  rvector<float> power_GW = compute_power( GW_FFT ); 
+  rvector<double> power_GW = compute_power( GW_FFT ); 
 
   // loop over detection files and compute correlations
   for (int i=0; i<n; i++){
@@ -55,9 +55,9 @@ int main(){
     fft_signal( detection_data, data_FFT );
 
     // Compute power spectrum of data
-    rvector<float> power_data = compute_power( data_FFT ); 
-
-    // Compute correlation functions and store them in array 
+    rvector<double> power_data = compute_power( data_FFT ); 
+    
+        // Compute correlation functions and store them in array 
     correlations[i] = correlation( power_GW, power_data ); 
 
     //detection_data.clear(); // release data from memory
@@ -65,7 +65,7 @@ int main(){
     
   }
   
-  cout << correlations << endl;
+  cout << correlations << endl;	
   // Sort correlations
   //sort(correlations);  
 
