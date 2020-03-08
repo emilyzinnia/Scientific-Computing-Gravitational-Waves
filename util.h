@@ -2,8 +2,7 @@
 // Emily Zhang
 // March 2020
 //
-// Includes utility functions, such as a function to fill an rarray with zeros, and 
-// one that counts the top five of a 2D array 
+// Includes utility functions, such as one that counts the top five of a 2D array 
 
 #ifndef UTIL_H
 #define UTIL_H
@@ -26,13 +25,3 @@ int compare(const void *arg1, const void *arg2);
 //    arr  A 2D rarray containing the indices in the 1st column and values in the 2nd
 
 void print_top_five(rarray<double,2> arr);
-
-
-// Function that returns an nxm rarray of zeros
-//
-// Parameters:
-//    n    Integer representing the first dimension
-//    m    Integer representing the second dimension 
-rarray<double,2> zeros( int n, int m );
-
-#endif

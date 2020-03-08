@@ -11,6 +11,7 @@
 #include "read_nc.h"
 #include "signal_processing.h"
 #include "correlation.h"
+#include "util.h"
 
 using namespace std; 
 
@@ -22,8 +23,8 @@ int main(){
   // number of detection files
   int n = 32;
 
-  // create array to store correlations
-  rvector<double> correlations(n); 
+  // create array to store correlations and data index
+  rarray<double,2> correlations(n,2); 
 
   // define path
   string path = "data_files/";
@@ -57,16 +58,18 @@ int main(){
     // Compute power spectrum of data
     rvector<double> power_data = compute_power( data_FFT ); 
     
-        // Compute correlation functions and store them in array 
-    correlations[i] = correlation( power_GW, power_data ); 
-
+    // Compute correlation functions and store them in array 
+    correlations[i][0] = (double) i+1; // data index
+    correlations[i][1] = correlation( power_GW, power_data ); // correlation 
+    
     //detection_data.clear(); // release data from memory
     //power_data.clear();
     
   }
   
   cout << correlations << endl;	
-  // Sort correlations
+  print_top_five(correlations);
+// Sort correlations
   //sort(correlations);  
 
 }
