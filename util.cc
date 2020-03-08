@@ -6,16 +6,22 @@
 #include <algorithm>
 #include "util.h"
 
-int compare(const void *, const void *arg2){
+int compare(const void *arg1, const void *arg2){
 
   // casting pointers to local variables lhs and rhs 
   double const *lhs = static_cast<double const*>(arg1);
   double const *rhs = static_cast<double const*>(arg2);
-
+  
+  std::cout << lhs[0] << " " << lhs[1] << " " 
+	    << rhs[0] << " "<< rhs[1]<<" " << std::endl;
   // comparing the second elements in the array 
   if (lhs[1] < rhs[1]){
     return -1;
   } else if (rhs[1] < lhs[1]) {
+    return 1;
+  } else if (lhs[0] < rhs[0]) {
+    return -1;
+  } else if (rhs[0] < lhs[0]) {
     return 1;
   } else {
     return 0;
@@ -24,12 +30,19 @@ int compare(const void *, const void *arg2){
 }
 
 void print_top_five(rarray<double,2> arr){
-  rarray<double,2> top_five= zeros(5, 2);  // array to store top correlations and indices
+  
+  int n = arr.extent(0); 
 
-  std::qsort( arr.data(), arr.extent(0), sizeof(*arr.data()),
+  // sort correlations from lowest to highest
+  std::qsort( arr.data(), n, sizeof(*arr.data())*2,
 	      compare );
 
-  std::cout << arr << std::endl; 
+  // print last five elements 
+  std::cout << "The datasets with the largest correlations are:" << std::endl;
+  for (int i = n; i > n-5; i--){
+    std::cout << "Dataset: " << arr[0] 
+	      << "\t Correlation: " << arr[1] << std::endl;
+  } 
   
 }
 
