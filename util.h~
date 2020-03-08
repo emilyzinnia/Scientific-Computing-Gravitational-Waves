@@ -1,0 +1,20 @@
+// util.h
+// Emily Zhang
+// March 2020
+//
+// Includes utility functions, such as a function to fill an rarray with zeros, and 
+// one that counts the top five of a 2D array 
+
+#ifndef UTIL_H
+#define UTIL_H
+
+// Function to print top five elements and their corresponding indices in a 2D array
+//
+// Parameters:
+//    arr    A 2D rarray containing the indices in the 1st column and values in the 2nd
+
+void print_top_five(rarray<double,2> arr);
+
+// Function that returns an nxm rarray of zeros 
+
+#endif
