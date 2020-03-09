@@ -25,7 +25,7 @@ rvector<double> compute_power(rvector<complex> fhat){
   
   for (int i = 0; i<length; i++){
     double norm = std::norm( fhat[i] );
-    pow[i] = norm * norm;
+    pow[i] = norm ;
   }
 
   return pow;
