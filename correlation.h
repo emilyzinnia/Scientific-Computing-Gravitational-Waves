@@ -9,8 +9,11 @@
 
 #include <rarray>
 
+// Function that computes the correlation between two vectors 
+// 
+// Parameters
+//   F    rarray of size n 
+//   G    rarray of size n
 double correlation( rvector<double> F, rvector<double> G );
-
-void get_top_five( rvector<double> corr );
 
 #endif

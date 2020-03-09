@@ -8,16 +8,16 @@
 
 int compare(const void *arg1, const void *arg2){
 
-  // casting pointers to local variables lhs and rhs 
+  // casting void pointers to local variables lhs and rhs 
   double const *lhs = static_cast<double const*>(arg1);
   double const *rhs = static_cast<double const*>(arg2);
   
     // comparing the second elements in the array 
-  if (lhs[1] < rhs[1]){
-    return -1;
-  } else if (rhs[1] < lhs[1]) {
+  if (lhs[1] < rhs[1]){          // if element 1 <  element 2, goes before 
+    return -1;       
+  } else if (rhs[1] < lhs[1]) {  // if element 2 <  element 1, goes after
     return 1;
-  } else {
+  } else {                       // if element 1 == element 2, stays the same 
     return 0;
   }
   
@@ -39,10 +39,4 @@ void print_top_five(rarray<double,2> arr){
     	      << "\t Correlation: " << arr[i][1] << std::endl;
   } 
   
-}
-
-rarray<double,2> zeros( int n, int m ){
-  rarray<double,2> r(n,m);
-  r.fill(0.0);
-  return r;
 }

@@ -1,8 +1,8 @@
 // read_nc.h
-// Emily Zhang                                                                                
-// March 2020                                                                               
-//                                                                                             
-// Reads netCDF file containing GW signals 
+// Emily Zhang
+// March 2020
+//
+// Module to read netCDF file 
 
 #ifndef READ_NC
 #define READ_NC  

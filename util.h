@@ -2,7 +2,7 @@
 // Emily Zhang
 // March 2020
 //
-// Includes utility functions, such as one that counts the top five of a 2D array 
+// Includes utility functions, such as one that counts the top five of an array 
 
 #ifndef UTIL_H
 #define UTIL_H
@@ -25,3 +25,5 @@ int compare(const void *arg1, const void *arg2);
 //    arr  A 2D rarray containing the indices in the 1st column and values in the 2nd
 
 void print_top_five(rarray<double,2> arr);
+
+#endif
